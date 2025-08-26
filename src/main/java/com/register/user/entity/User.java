@@ -2,6 +2,8 @@ package com.register.user.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "tb_users")
 public class User {
@@ -16,10 +18,10 @@ public class User {
 
     private String email;
 
-    public Usuario() {
+    public User() {
     }
 
-    public Usuario(Long id, String nome, Integer idade, String email) {
+    public User(Long id, String nome, Integer idade, String email) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -58,5 +60,15 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
