@@ -2,6 +2,7 @@ package com.register.user.service;
 
 import com.register.user.dto.UserDTO;
 import com.register.user.entity.User;
+import com.register.user.exceptions.EmailNotFoundException;
 import com.register.user.exceptions.ResourceNotFoundException;
 import com.register.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,17 @@ public class UserService {
         return users.stream().map(x -> new UserDTO(x)).toList();
     }
 
+    //Find by Id
     public UserDTO findById(Long id){
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado com o id = " +id));
         return new UserDTO(user);
+    }
+
+    //Find by Email
+    public UserDTO findByEmail(String email){
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new EmailNotFoundException("Email " +email+ " não encontrado"));
+        return new UserDTO(user);
+
     }
 
     // Save User
