@@ -6,6 +6,7 @@ public class UserDTO {
 
     private Long id;
     private String name;
+    private Integer idade;;
     private String email;
 
     public UserDTO(User entity) {
@@ -13,11 +14,14 @@ public class UserDTO {
         id = entity.getId();
         name = entity.getName();
         email = entity.getEmail();
+        idade = entity.getIdade();
+
     }
 
-    public UserDTO(Long id, String name, String email) {
+    public UserDTO(Long id, String name, Integer idade , String email) {
         this.id = id;
         this.name = name;
+        this.idade = idade;
         this.email = email;
     }
 
@@ -43,5 +47,13 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
     }
 }

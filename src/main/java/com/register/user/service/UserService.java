@@ -36,19 +36,20 @@ public class UserService {
     }
 
     // Save User
-    public UserDTO saveUser(UserDTO userDTO){
+    public UserDTO saveUser(UserDTO dto) {
         // DTO -> Entity
         User user = new User();
-        user.setName(userDTO.getName());
-        user.setEmail(user.getEmail());
+        user.setName(dto.getName());
+        user.setIdade(dto.getIdade());
+        user.setEmail(dto.getEmail());
 
-        // Salva no banco de dados
+        // Salva no banco
         User savedUser = userRepository.save(user);
 
         // Entity -> DTO
-        return new UserDTO(savedUser.getId() , savedUser.getName(), savedUser.getEmail());
-
+        return new UserDTO(savedUser.getId(), savedUser.getName(), savedUser.getIdade(), savedUser.getEmail());
     }
+
 
     // Delete user by ID
     public void deleteById(Long id ){
