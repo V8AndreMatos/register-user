@@ -4,6 +4,7 @@ import com.register.user.dto.UserDTO;
 import com.register.user.entity.User;
 import com.register.user.exceptions.ResourceNotFoundException;
 import com.register.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequestMapping(value = "/users")
 public class UserController {
 
+    @Autowired
     private UserService userService;
 
     @GetMapping
@@ -35,6 +37,7 @@ public class UserController {
     }
 
     @PostMapping
+    @ResponseBody
     public ResponseEntity<UserDTO> insertUser(@RequestBody UserDTO userDTO) {
         UserDTO savedUser = userService.saveUser(userDTO);
         return ResponseEntity.ok(savedUser);
