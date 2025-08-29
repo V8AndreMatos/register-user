@@ -31,7 +31,7 @@ public class UserController {
             userService.findById(id);
             return new ResponseEntity<String>("Usuário com o id : " +id+ " encontrado com sucesso" , HttpStatus.OK);
         }catch (ResourceNotFoundException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body( "Usuário com o id : " +id+  " não encontrado");
         }
 
     }
@@ -44,14 +44,14 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deleteUser(@RequestParam Long id){
+    public ResponseEntity<String> deleteUser(@PathVariable Long id){
 
         try {
             userService.deleteById(id);
             return ResponseEntity.ok().body("Usuario com o id : " +id+ " deletado com sucesso");
         } catch (ResourceNotFoundException e) {
 
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado " +e);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario com o id : " +id+ " não encontrado");
         }
     }
 

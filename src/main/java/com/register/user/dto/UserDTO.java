@@ -9,6 +9,9 @@ public class UserDTO {
     private Integer idade;;
     private String email;
 
+    public UserDTO() {
+    }
+
     public UserDTO(User entity) {
 
         id = entity.getId();
