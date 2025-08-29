@@ -40,5 +40,16 @@ public class UserController {
         return ResponseEntity.ok(savedUser);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteUser(@RequestParam Long id){
+
+        try {
+            userService.deleteById(id);
+            return ResponseEntity.ok().body("Usuario com o id : " +id+ " deletado com sucesso");
+        } catch (ResourceNotFoundException e) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado " +e);
+        }
+    }
 
 }
