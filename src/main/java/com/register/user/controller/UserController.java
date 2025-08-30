@@ -26,14 +26,8 @@ public class UserController {
     @GetMapping(value = "/{id}")
     @ResponseBody
     public ResponseEntity<String> findById(@PathVariable Long id){
-
-        try {
-            userService.findById(id);
-            return new ResponseEntity<String>("Usuário com o id : " +id+ " encontrado com sucesso" , HttpStatus.OK);
-        }catch (ResourceNotFoundException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body( "Usuário com o id : " +id+  " não encontrado");
-        }
-
+         userService.findById(id);
+         return new ResponseEntity<String>("Usuário com o id : " +id+ " encontrado com sucesso" , HttpStatus.OK);
     }
 
     @PostMapping
@@ -43,16 +37,11 @@ public class UserController {
         return ResponseEntity.ok(savedUser);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id){
-
-        try {
-            userService.deleteById(id);
-            return ResponseEntity.ok().body("Usuario com o id : " +id+ " deletado com sucesso");
-        } catch (ResourceNotFoundException e) {
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario com o id : " +id+ " não encontrado");
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        userService.deleteById(id);
+        return ResponseEntity.ok("Usuário com o id " + id + " deletado com sucesso");
     }
+
 
 }
