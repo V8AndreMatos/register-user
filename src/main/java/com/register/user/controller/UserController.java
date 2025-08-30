@@ -37,6 +37,12 @@ public class UserController {
         return ResponseEntity.ok(savedUser);
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<String> findByEmail(@PathVariable String email) {
+        userService.findByEmail(email);
+        return ResponseEntity.ok("Usuário com o email: " + email + " encontrado com sucesso!");
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
